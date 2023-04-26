@@ -1,0 +1,11 @@
+.errorContainer {
+  margin: 1px;
+  border: 2px dashed #f7a7a7;
+  text-align: center;
+  padding: 10px;
+}
+
+.errorContainerMessage {
+  color: red;
+  margin: 5px;
+}

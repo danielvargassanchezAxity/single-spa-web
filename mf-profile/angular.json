@@ -12,7 +12,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "axity",
       "architect": {
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",

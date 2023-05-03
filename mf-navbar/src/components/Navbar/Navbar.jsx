@@ -12,11 +12,37 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { useKeycloak } from "@react-keycloak/web";
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pagesWithActions = [
+  {
+    title: 'Products',
+    action: () => redirection('/catalogs')
+  },
+  {
+    title: 'Shopping Cart',
+    route: () => redirection('/shoppingCart')
+  }
+];
+const redirection = (url) => {
+  window.history.pushState(null, null, url);
+};
+const settings = [
+  {
+    title: 'Profile',
+    action: () => redirection('/profile')
+  },
+  {
+    title: 'Logout',
+    action: () => {
+      keycloak.logout('/auth');
+
+    }
+  }
+];
 
 function Navbar() {
+  const { keycloak, initialized } = useKeycloak();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -44,7 +70,7 @@ function Navbar() {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            onClick={()=> redirection('/home')}
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -87,9 +113,9 @@ function Navbar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {pagesWithActions.map((page) => (
+                <MenuItem key={page.title} onClick={page.action}>
+                  <Typography textAlign="center" > {page.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -99,7 +125,7 @@ function Navbar() {
             variant="h5"
             noWrap
             component="a"
-            href=""
+            onClick={()=> redirection('/home')}
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -114,13 +140,13 @@ function Navbar() {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {pagesWithActions.map((page) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={page.title}
+                onClick={page.action}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {page.title}
               </Button>
             ))}
           </Box>
@@ -148,8 +174,8 @@ function Navbar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem key={setting.title} onClick={setting.action}>
+                  <Typography textAlign="center">{setting.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>

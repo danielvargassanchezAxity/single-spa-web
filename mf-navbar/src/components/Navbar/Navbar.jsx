@@ -8,40 +8,39 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useKeycloak } from "@react-keycloak/web";
 
-const pagesWithActions = [
-  {
-    title: 'Products',
-    action: () => redirection('/catalogs')
-  },
-  {
-    title: 'Shopping Cart',
-    route: () => redirection('/shoppingCart')
-  }
-];
-const redirection = (url) => {
-  window.history.pushState(null, null, url);
-};
-const settings = [
-  {
-    title: 'Profile',
-    action: () => redirection('/profile')
-  },
-  {
-    title: 'Logout',
-    action: () => {
-      keycloak.logout('/auth');
-
-    }
-  }
-];
 
 function Navbar() {
+  const pagesWithActions = [
+    {
+      title: 'Products',
+      action: () => redirection('/catalogs')
+    },
+    {
+      title: 'Shopping Cart',
+      action: () => redirection('/shoppingcart')
+    }
+  ];
+  const settings = [
+    {
+      title: 'Profile',
+      action: () => redirection('/profile')
+    },
+    {
+      title: 'Logout',
+      action: () => {
+        keycloak.logout('/auth');
+      }
+    }
+  ];
+  const redirection = (url) => {
+    console.log(url)
+    window.history.pushState(null, null, url);
+  };
   const { keycloak, initialized } = useKeycloak();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -70,7 +69,7 @@ function Navbar() {
             variant="h6"
             noWrap
             component="a"
-            onClick={()=> redirection('/home')}
+            onClick={() => redirection('/home')}
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -115,7 +114,7 @@ function Navbar() {
             >
               {pagesWithActions.map((page) => (
                 <MenuItem key={page.title} onClick={page.action}>
-                  <Typography textAlign="center" > {page.title}</Typography>
+                  <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -125,7 +124,7 @@ function Navbar() {
             variant="h5"
             noWrap
             component="a"
-            onClick={()=> redirection('/home')}
+            onClick={() => redirection('/home')}
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -141,13 +140,13 @@ function Navbar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pagesWithActions.map((page) => (
-              <Button
+              <MenuItem
                 key={page.title}
                 onClick={page.action}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page.title}
-              </Button>
+              </MenuItem>
             ))}
           </Box>
 

@@ -1,17 +1,20 @@
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { Navbar } from "./components/Navbar";
 import { ReactKeycloakProvider } from "@react-keycloak/web";
-import keycloak from "./keycloak"
+import keycloak from "./keycloak";
 
 export default function Root(props) {
   const options = {
     onLoad: 'login-required',
     checkLoginIframe: false,
   };
+
   return (
-    <ReactKeycloakProvider authClient={keycloak}
+    <ReactKeycloakProvider
+      authClient={keycloak}
       initOptions={options}
-      LoadingComponent={<></>}>
+      LoadingComponent={<></>}
+    >
       <ErrorBoundary componentName={props.name} >
         <Navbar {...props} />
       </ErrorBoundary>

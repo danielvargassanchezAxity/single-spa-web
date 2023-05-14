@@ -13,8 +13,15 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useKeycloak } from "@react-keycloak/web";
 
+const redirection = (url) => {
+  window.history.pushState(null, null, url);
+};
 
 function Navbar() {
+  const { keycloak, initialized } = useKeycloak();
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
   const pagesWithActions = [
     {
       title: 'Products',
@@ -25,6 +32,7 @@ function Navbar() {
       action: () => redirection('/shoppingcart')
     }
   ];
+
   const settings = [
     {
       title: 'Profile',
@@ -37,17 +45,11 @@ function Navbar() {
       }
     }
   ];
-  const redirection = (url) => {
-    console.log(url)
-    window.history.pushState(null, null, url);
-  };
-  const { keycloak, initialized } = useKeycloak();
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -184,4 +186,5 @@ function Navbar() {
     </AppBar>
   );
 }
+
 export default Navbar;

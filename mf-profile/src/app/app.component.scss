@@ -5,6 +5,10 @@
   background: #EEE;
   border: 1px solid #CCC;
   border-radius: 5px;
+
+  box-shadow: -6px -5px 9px -6px rgba(0, 0, 0, 0.84);
+  -webkit-box-shadow: -6px -5px 9px -6px rgba(0, 0, 0, 0.84);
+  -moz-box-shadow: -6px -5px 9px -6px rgba(0, 0, 0, 0.84);
 }
 
 .mf-profile .img {

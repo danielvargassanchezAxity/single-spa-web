@@ -2,6 +2,7 @@ import { ErrorBoundary } from "./components/ErrorBoundary";
 import { Navbar } from "./components/Navbar";
 import { ReactKeycloakProvider } from "@react-keycloak/web";
 import keycloak from "./keycloak";
+import { theme } from "./theme/appTheme";
 
 export default function Root(props) {
   const options = {
@@ -16,7 +17,9 @@ export default function Root(props) {
       LoadingComponent={<></>}
     >
       <ErrorBoundary componentName={props.name} >
-        <Navbar {...props} />
+        <ThemeProvider theme={theme}>
+          <Navbar {...props} />
+        </ThemeProvider>
       </ErrorBoundary>
     </ReactKeycloakProvider>
   );

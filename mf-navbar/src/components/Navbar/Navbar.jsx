@@ -10,80 +10,72 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-import { useKeycloak } from "@react-keycloak/web";
+import StorefrontIcon from '@mui/icons-material/Storefront';
+import { routes } from '../../constants/routeConstants';
 
-const redirection = (url) => {
-  window.history.pushState(null, null, url);
-};
+import { useKeycloak } from "@react-keycloak/web";
 
 function Navbar() {
   const { keycloak, initialized } = useKeycloak();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  const pagesWithActions = [
-    {
-      title: 'Products',
-      action: () => redirection('/catalogs')
-    },
-    {
-      title: 'Shopping Cart',
-      action: () => redirection('/shoppingcart')
-    }
-  ];
-
-  const settings = [
-    {
-      title: 'Profile',
-      action: () => redirection('/profile')
-    },
-    {
-      title: 'Logout',
-      action: () => {
-        keycloak.logout('/auth');
-      }
-    }
-  ];
-
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
+  };
+
+  //Close menu options
+  const handleCloseNavMenu = (route) => {
+    if (route) {
+      window.history.pushState(null, null, route);
+    }
+    setAnchorElNav(null);
   };
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+  //close user settings options
+  const handleCloseUserMenu = (route) => {
+    if (route) {
+      if (route === "/auth") {
+        keycloak.logout('/auth');
+      }
+
+      window.history.pushState(null, null, route);
+    }
+    setAnchorElUser(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
+  const handleGoHome = () => {
+    window.history.pushState(null, null, '/home');
   };
 
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            onClick={() => redirection('/home')}
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
+
+          <StorefrontIcon
+            sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
+            style={{ cursor: 'pointer' }}
+            onClick={handleGoHome}
+          />
+
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {
+              routes.pages.map((page) => (
+                <MenuItem
+                  key={page.title}
+                  onClick={() => handleCloseNavMenu(page.route)}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  <Typography textAlign="center">{page.title}</Typography>
+                </MenuItem>
+              ))
+            }
+          </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -96,6 +88,7 @@ function Navbar() {
             >
               <MenuIcon />
             </IconButton>
+
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -109,24 +102,34 @@ function Navbar() {
                 horizontal: 'left',
               }}
               open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+              onClose={() => handleCloseNavMenu()}
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pagesWithActions.map((page) => (
-                <MenuItem key={page.title} onClick={page.action}>
-                  <Typography textAlign="center">{page.title}</Typography>
-                </MenuItem>
-              ))}
+              {
+                routes.pages.map((page) => (
+                  <MenuItem
+                    key={page.title}
+                    onClick={() => handleCloseNavMenu(page.route)}
+                  >
+                    <Typography textAlign="center">{page.title}</Typography>
+                  </MenuItem>
+                ))
+              }
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+
+          <StorefrontIcon
+            sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}
+            style={{ cursor: 'pointer' }}
+            onClick={handleGoHome}
+          />
+
           <Typography
             variant="h5"
             noWrap
             component="a"
-            onClick={() => redirection('/home')}
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -138,24 +141,13 @@ function Navbar() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            STORE
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pagesWithActions.map((page) => (
-              <MenuItem
-                key={page.title}
-                onClick={page.action}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page.title}
-              </MenuItem>
-            ))}
-          </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src="https://material.angular.io/assets/img/examples/shiba2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -172,15 +164,21 @@ function Navbar() {
                 horizontal: 'right',
               }}
               open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
+              onClose={() => handleCloseUserMenu()}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting.title} onClick={setting.action}>
-                  <Typography textAlign="center">{setting.title}</Typography>
-                </MenuItem>
-              ))}
+              {
+                routes.settings.map((setting) => (
+                  <MenuItem
+                    key={setting.title}
+                    onClick={() => handleCloseUserMenu(setting.route)}
+                  >
+                    <Typography textAlign="center">{setting.title}</Typography>
+                  </MenuItem>
+                ))
+              }
             </Menu>
           </Box>
+
         </Toolbar>
       </Container>
     </AppBar>

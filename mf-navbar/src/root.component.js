@@ -1,8 +1,9 @@
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { Navbar } from "./components/Navbar";
 import { ReactKeycloakProvider } from "@react-keycloak/web";
-import keycloak from "./keycloak";
+import { ThemeProvider } from "@mui/material";
 import { theme } from "./theme/appTheme";
+import keycloak from "./keycloak";
 
 export default function Root(props) {
   const options = {

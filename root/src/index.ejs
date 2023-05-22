@@ -57,11 +57,11 @@
         "react": "https://cdn.jsdelivr.net/npm/react@17.0.1/umd/react.production.min.js",
         "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@17.0.1/umd/react-dom.production.min.js",
         "@axity/root-config": "//localhost:9000/axity-root-config.js",
-        "@axity/auth": "//localhost:4200/main.js",
-        "@axity/home": "//localhost:4201/axity-home.js",
-        "@axity/auth": "//localhost:4200/main.js",
         "@axity/mf-navbar": "//localhost:3001/axity-mf-navbar.js",
-        "@axity/mf-profile": "//localhost:3002/main.js"
+        "@axity/mf-profile": "//localhost:3002/main.js",
+        "@axity/catalog": "//localhost:3003/axity-catalog.js",
+        "@axity/shoppingCart": "//localhost:3004/main.js",
+        "@axity/home": "//localhost:3005/axity-home.js"
       }
     }
   </script>
@@ -89,6 +89,8 @@
   <main>
     <section id="single-spa-application:@axity/home"></section>
     <section id="single-spa-application:@axity/mf-profile"></section>
+    <section id="single-spa-application:@axity/catalog"></section>
+    <section id="single-spa-application:@axity/shoppingCart"></section>
   </main>
   <script>
     System.import('@axity/root-config');

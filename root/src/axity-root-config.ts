@@ -15,6 +15,16 @@ registerApplication({
   app: () => System.import<LifeCycles>("@axity/mf-profile"),
   activeWhen: ["/profile"],
 });
+registerApplication({
+  name: "@axity/catalog",
+  app: () => System.import<LifeCycles>("@axity/catalog"),
+  activeWhen: ["/catalogs"],
+});
+registerApplication({
+  name: "@axity/shoppingCart",
+  app: () => System.import<LifeCycles>("@axity/shoppingCart"),
+  activeWhen: ["/shoppingcart"],
+});
 start({
   urlRerouteOnly: true,
 });

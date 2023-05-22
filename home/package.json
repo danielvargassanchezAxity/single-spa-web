@@ -1,7 +1,7 @@
 {
   "name": "@axity/home",
   "scripts": {
-    "start": "webpack serve --port 4201",
+    "start": "webpack serve --port 3005",
     "start:standalone": "webpack serve --env standalone",
     "build": "concurrently npm:build:*",
     "build:webpack": "webpack --mode=production",

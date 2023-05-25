@@ -1,0 +1,54 @@
+@import "../../../assets/themes/colors-theme.scss";
+.content-counter-piece {
+  font-size: 13px;
+  width: 100%;
+  height: 32px;
+  display: flex;
+  justify-content: flex-start;
+  .content-counter-piece-less {
+    font-size: 25px;
+    padding-bottom: 4px;
+  }
+  .content-counter-piece-more {
+    font-size: 16px;
+    padding-bottom: 4px;
+  }
+  .content-counter-piece-more-disabled {
+    font-size: 16px;
+    padding-bottom: 4px;
+    color: $grey-secondary-low;
+  }
+  .content-piece-fuction {
+    display: flex;
+    height: 32px;
+    width: 33%;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    input:focus-visible {
+      outline-offset: 0;
+      outline: none;
+    }
+    input {
+      width: 100%;
+      height: 28px;
+      border-radius: 5px;
+
+      text-align: center;
+    }
+    .border-input-ok {
+      border: 1px solid $grey-secondary-low;
+    }
+    .border-input-error {
+      border: 1px solid $red;
+    }
+  }
+}
+
+// general styles
+.pointer {
+  cursor: pointer;
+}
+.not-pointer {
+  cursor: not-allowed !important;
+}

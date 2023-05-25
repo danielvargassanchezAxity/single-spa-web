@@ -1,0 +1,37 @@
+<div class="content-counter-piece">
+  <div
+    *ngIf="!notActions"
+    class="content-piece-fuction pointer content-counter-piece-less"
+    (click)="decrement()"
+  >
+    -
+  </div>
+  <div class="content-piece-fuction">
+    <input
+      type="text"
+      mask="000000"
+      [ngClass]="pieceInit > 0 ? 'border-input-ok' : 'border-input-error'"
+      autocomplete="off"
+      [readonly]="readonly"
+      matInput
+      [(ngModel)]="pieceInit"
+      (blur)="submitPiece()"
+      (input)="patternService.inputNumbersOnly($event, pieceInit)"
+      (keypress)="patternService.inputNumbersOnly($event, pieceInit)"
+      maxlength="6"
+      (keydown.enter)="submitPiece()"
+    />
+  </div>
+  <div
+    *ngIf="!notActions"
+    class="content-piece-fuction"
+    [class]="
+      !notInclement
+        ? 'pointer content-counter-piece-more'
+        : 'not-pointer content-counter-piece-more-disabled'
+    "
+    (click)="!notInclement ? inclement() : ''"
+  >
+    +
+  </div>
+</div>

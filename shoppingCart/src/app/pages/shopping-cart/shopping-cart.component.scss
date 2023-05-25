@@ -1,8 +1,6 @@
 $fontPrimary: "Nunito", sans-serif;
 /* You can add global styles to this file, and also import other style files */
-/* You can add global styles to this file, and also import other style files */
-@import "assets/themes/colors-theme.scss";
-@import "./assets/styles/bootstrap-grid.min.css";
+@import "../../../assets/themes/colors-theme.scss";
 @mixin font-family-primary {
   font-family: $fontPrimary;
 }
@@ -13,7 +11,6 @@ body {
   margin: 0;
   font-display: swap;
   color: $grey-low;
-  background-color: red;
   @include font-family-primary();
 }
 h1,
@@ -39,4 +36,10 @@ li {
 }
 .bg-grey {
   background-color: $grey-low;
+}
+.bg-white-actions {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 50px;
+  z-index: 1;
 }

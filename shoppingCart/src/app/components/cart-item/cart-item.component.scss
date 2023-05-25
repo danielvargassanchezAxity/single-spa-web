@@ -1,4 +1,75 @@
-.test-cart {
-    background-color: red;
-    color: white;
+@import "../../../assets/themes/colors-theme.scss";
+/// general styles
+.label-title {
+  font-size: 15px;
+  color: $back;
+  font-weight: 600;
+}
+.label-content {
+  font-size: 14px;
+  color: $grey-secondary;
+}
+.label-delete {
+  text-decoration: none;
+  font-weight: 700;
+  color: $blue;
+  font-size: 13px;
+}
+.modifications-row {
+  padding-left: 0px !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  padding-right: 0px !important;
+}
+
+.text-color {
+  &.grey {
+    color: $grey-secondary;
+  }
+}
+// fin general
+
+.content-item-cart {
+  margin-bottom: 15px;
+  .content-images {
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .content-info {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+/// Start responsive views
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 767px) {
+  .content-item-cart {
+    border-bottom: 1px solid $grey-secondary-low !important;
+  }
+  .label-content {
+    display: flex;
+    flex-direction: column;
+  }
+}
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .content-item-cart {
+    border-bottom: 1px solid $grey-secondary-low !important;
+  }
+  .label-content {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 992px) {
+  .content-item-cart {
+    border: 1px solid $grey-secondary-low;
+  }
+  .label-content {
+    display: flex;
+    justify-content: space-between;
+  }
 }

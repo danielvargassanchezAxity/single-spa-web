@@ -1,0 +1,35 @@
+@import "../../../assets/themes/colors-theme.scss";
+
+.content-resume {
+  padding: 15px;
+}
+/// Start responsive views
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 767px) {
+  .content-resume {
+    border-bottom: 1px solid $grey-secondary-low !important;
+  }
+}
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .content-resume {
+    border-bottom: 1px solid $grey-secondary-low !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .content-resume {
+    border: 1px solid $grey-secondary-low;
+  }
+}
+
+// general
+.modifications-row {
+  padding-left: 0px !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  padding-right: 0px !important;
+}
+.font-navistar-bold {
+  font-weight: 700 !important;
+}

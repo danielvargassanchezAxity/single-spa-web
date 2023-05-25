@@ -1,3 +1,39 @@
-<div class="test-cart">
-    <p>Este es el cart item</p> 
+<div class="content-item-cart p-3">
+  <div class="row modifications-row">
+    <div
+      class="col-xl-2 col-lg-2 col-md-4 col-sm-5 col-5 modifications-row content-images"
+    >
+      <axity-item-image [image]="product.image"></axity-item-image>
+    </div>
+    <div
+      class="col-xl-10 col-lg-10 col-md-8 col-sm-7 col-7 modifications-row d-flex flex-column justify-content-between"
+    >
+      <div class="p-3">
+        <div class="font-navistar-bold label-title">{{ product.title }}</div>
+        <div class="label-content pt-1">
+          <div>
+            <axity-counter-pieces
+              [pieceInit]="product.quantity"
+              (newPieceEmitter)="setQuantity.emit($event)"
+              [notActions]="false"
+            >
+            </axity-counter-pieces>
+          </div>
+          <div class="d-flex justify-content-end">
+            <div>$ {{ product.price }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="p-3 d-flex justify-content-end align-items-end">
+        <div>
+          <a
+            class="label-delete"
+            href="javascript:void(0)"
+            (click)="delete.emit()"
+            >Eliminar</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

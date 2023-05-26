@@ -19,23 +19,19 @@ export class ItemProduct {
 }
 export class ShopCarClass {
   id: number;
-  subtotal: number;
-  tax: number;
-  total: number;
-  totalProduct: number;
-  pieces: number;
-  delivery: string;
-  deliveryCost: number;
   products: Array<ItemProduct>;
   constructor() {
     this.id = NumberConst.zero;
+    this.products = ArrayConst.empty;
+  }
+}
+export class CartDetail {
+  total: number;
+  totalProduct: number;
+  pieces: number;
+  constructor() {
     this.pieces = NumberConst.zero;
-    this.delivery = StringConst.empty;
-    this.subtotal = NumberConst.zero;
-    this.tax = NumberConst.zero;
     this.total = NumberConst.zero;
     this.totalProduct = NumberConst.zero;
-    this.products = ArrayConst.empty;
-    this.deliveryCost = NumberConst.zero;
   }
 }

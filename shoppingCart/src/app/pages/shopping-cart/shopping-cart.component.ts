@@ -1,10 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { NumberConst } from 'src/app/constants/const';
 import { RoutesInfo } from 'src/app/constants/routes';
-import { ItemProduct, ShopCarClass } from 'src/app/model/http/shoppingCart.model';
-// import { ConsumeService } from 'src/app/services/consume.service';
+import { CartDetail, ItemProduct, ShopCarClass } from 'src/app/model/http/shoppingCart.model';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 
 @Component({
@@ -18,6 +16,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   idCart: number = NumberConst.zero;
   shopCart: ShopCarClass = new ShopCarClass();
   userId = 0;
+  detailCar = new CartDetail();
 
   constructor(private shoppingCartService: ShoppingCartService) { }
   ngOnInit(): void {
@@ -33,7 +32,14 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   };
   okShoppingCart = (response: ShopCarClass): void => {
     this.shopCart = response;
+    this.updateTotal();
   };
+
+  updateTotal(): void {
+    this.detailCar.totalProduct = this.shopCart.products.length;
+    this.detailCar.total = this.shopCart.products.reduce((total, item) => (item.quantity * item.price) + total, 0);
+    this.detailCar.pieces = this.shopCart.products.reduce((total, item)=> item.quantity + total , 0)
+  }
 
   errorShoppingCart = (error: any): void => { };
 
@@ -47,6 +53,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     }); 
     this.shoppingCartService.updateList(itemToSave).subscribe((res)=> {
       this.shopCart = res;
+      this.updateTotal();
     });
   }
 
@@ -55,6 +62,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     itemToSave.products = itemToSave.products.filter(x => x.id !== product.id);
     this.shoppingCartService.updateList(itemToSave).subscribe((res)=> {
       this.shopCart = res;
+      this.updateTotal();
     });
   }
 }

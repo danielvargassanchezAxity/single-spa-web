@@ -18,5 +18,5 @@ export class ShoppingCartService {
 
   updateList = (data: ShopCarClass): Observable<ShopCarClass> => {
     return this.consumeService.httpPut(`${Endpoints.shoppingCart.base}/${data.id}`, data);
-  } 
+  }
 }

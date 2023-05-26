@@ -1,19 +1,18 @@
 <div class="row content-resume modifications-row">
   <div class="col-12 pb-3 font-navistar-bold">Resumen de compra</div>
-  <div class="col-6">SubTotal:</div>
+  <div class="col-6">Total de productos:</div>
   <div class="text-ov col-6 d-flex justify-content-end">
-    $ {{ shopCart.subtotal }}
+    {{ shopCart.totalProduct }}
   </div>
-  <div class="col-6">Envio ({{ shopCart.delivery }}):</div>
+  
+  <div class="col-6">Total de piezas:</div>
   <div class="text-ov col-6 d-flex justify-content-end">
-    $ {{ shopCart.deliveryCost }}
+    {{ shopCart.pieces }}
   </div>
-  <div class="col-6">Estimación total:</div>
-  <div class="text-ov col-6 d-flex justify-content-end">
-    $ {{ shopCart.subtotal }} + {{ shopCart.tax }}
-  </div>
+
   <div class="col-6">Total:</div>
   <div class="text-ov col-6 d-flex justify-content-end">
     $ {{ shopCart.total }}
   </div>
+
 </div>

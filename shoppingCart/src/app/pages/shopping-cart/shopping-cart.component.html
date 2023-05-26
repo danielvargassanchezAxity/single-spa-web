@@ -7,6 +7,8 @@
           <axity-cart-item
             *ngFor="let product of shopCart.products; let index = index"
             [product]="product"
+            (setQuantity)="updateProductQuantity($event.product, $event.quantity)"
+            (delete)="deleteProduct($event)"
           ></axity-cart-item>
         </div>
       </div>

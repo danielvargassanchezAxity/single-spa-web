@@ -10,9 +10,13 @@ import { Endpoints } from 'src/environments/endpoints';
 export class ShoppingCartService {
   constructor(private consumeService: ConsumeService) {}
 
-  getShoppingCart = (idCart: number): Observable<ShopCarClass> => {
+  getShoppingCart = (idCart: number, userId: number): Observable<ShopCarClass> => {
     return this.consumeService.httpGet(
-      `${Endpoints.shoppingCart.base}/${idCart}`
+      `${Endpoints.shoppingCart.base}/${idCart}?userId=${userId}`
     );
   };
+
+  updateList = (data: ShopCarClass): Observable<ShopCarClass> => {
+    return this.consumeService.httpPut(`${Endpoints.shoppingCart.base}/${data.id}`, data);
+  } 
 }

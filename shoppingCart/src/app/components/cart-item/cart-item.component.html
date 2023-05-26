@@ -14,7 +14,7 @@
           <div>
             <axity-counter-pieces
               [pieceInit]="product.quantity"
-              (newPieceEmitter)="setQuantity.emit($event)"
+              (newPieceEmitter)="setQuantity.emit({product: product, quantity: $event})"
               [notActions]="false"
             >
             </axity-counter-pieces>
@@ -26,11 +26,10 @@
       </div>
       <div class="p-3 d-flex justify-content-end align-items-end">
         <div>
-          <a
+          <p
             class="label-delete"
-            href="javascript:void(0)"
-            (click)="delete.emit()"
-            >Eliminar</a
+            (click)="delete.emit(product)"
+            >Eliminar</p
           >
         </div>
       </div>

@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { NumberConst } from 'src/app/constants/const';
 import { RoutesInfo } from 'src/app/constants/routes';
-import { ShopCarClass } from 'src/app/model/http/shoppingCart.model';
+import { ItemProduct, ShopCarClass } from 'src/app/model/http/shoppingCart.model';
 // import { ConsumeService } from 'src/app/services/consume.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 
@@ -17,24 +17,44 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();
   idCart: number = NumberConst.zero;
   shopCart: ShopCarClass = new ShopCarClass();
-  constructor(private shoppingCartService: ShoppingCartService) {}
+  userId = 0;
+
+  constructor(private shoppingCartService: ShoppingCartService) { }
   ngOnInit(): void {
-    // consultar del local storage el id del carrito y el user mock = 1
     this.idCart = NumberConst.one;
+    this.userId = Number(localStorage.getItem("userId"));
     this.getShoppingCart();
   }
+
   getShoppingCart = (): void => {
-    this.subscription.add(
-      this.shoppingCartService
-        .getShoppingCart(this.idCart)
-        .subscribe(this.okShoppingCart, this.errorShoppingCart)
-    );
+    this.shoppingCartService
+      .getShoppingCart(this.idCart, this.userId)
+      .subscribe(this.okShoppingCart, this.errorShoppingCart)
   };
   okShoppingCart = (response: ShopCarClass): void => {
     this.shopCart = response;
   };
-  errorShoppingCart = (error: any): void => {};
+
+  errorShoppingCart = (error: any): void => { };
+
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  }
+
+  updateProductQuantity(changeProduct: ItemProduct, quantity: number): void {
+    const itemToSave = {...this.shopCart};
+    itemToSave.products = itemToSave.products.map((product) => {
+      return {...product, quantity: product.id == changeProduct.id ? quantity : product.quantity};
+    }); 
+    this.shoppingCartService.updateList(itemToSave).subscribe((res)=> {
+      this.shopCart = res;
+    });
+  }
+
+  deleteProduct(product: ItemProduct): void {
+    const itemToSave = {...this.shopCart};
+    itemToSave.products = itemToSave.products.filter(x => x.id !== product.id);
+    this.shoppingCartService.updateList(itemToSave).subscribe((res)=> {
+      this.shopCart = res;
+    });
   }
 }

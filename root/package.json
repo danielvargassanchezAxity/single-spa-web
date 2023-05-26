@@ -2,7 +2,7 @@
   "name": "@axity/root-config",
   "scripts": {
     "start:server": "json-server --watch data/db.json --static ./data/assets/ --port 4000",
-    "start": "json-server --watch data/db.json --static ./data/assets/ --port 4000 & webpack serve --port 9000 --env isLocal",
+    "start": "json-server --watch data/db.json --static ./data/public --port 4000 & webpack serve --port 9000 --env isLocal",
     "lint": "eslint src --ext js,ts,tsx",
     "test": "cross-env BABEL_ENV=test jest --passWithNoTests",
     "format": "prettier --write .",

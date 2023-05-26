@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -19,7 +20,15 @@ function Navbar() {
   const { keycloak, initialized } = useKeycloak();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  
+  useEffect(() => {
+    getUserId();
+  }, []);
 
+  const getUserId = async () => {
+    let {attributes} = await keycloak.loadUserProfile();
+    localStorage.setItem("userId", attributes.userId[0]);
+  }
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -31,7 +40,6 @@ function Navbar() {
     }
     setAnchorElNav(null);
   };
-
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };

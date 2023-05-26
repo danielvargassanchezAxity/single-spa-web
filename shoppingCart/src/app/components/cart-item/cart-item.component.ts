@@ -7,7 +7,7 @@ import { ItemProduct } from 'src/app/model/http/shoppingCart.model';
   styleUrls: ['./cart-item.component.scss'],
 })
 export class CartItemComponent {
-  @Output() delete: EventEmitter<any> = new EventEmitter();
-  @Output() setQuantity: EventEmitter<number> = new EventEmitter();
+  @Output() delete: EventEmitter<ItemProduct> = new EventEmitter();
+  @Output() setQuantity: EventEmitter<{ product: ItemProduct, quantity: number}> = new EventEmitter();
   @Input() product: ItemProduct = new ItemProduct();
 }

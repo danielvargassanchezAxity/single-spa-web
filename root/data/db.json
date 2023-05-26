@@ -136,36 +136,67 @@
       "quantity": 1
     }
   ],
-  "user": {
-    "id": 1,
-    "firstName": "Josh",
-    "lastName": "Thomas",
-    "email": "josh@ionic.io",
-    "image": "jt-avatar.png",
-    "addresses": [
-      {
-        "id": 1,
-        "street": "1234 Shady Lane",
-        "city": "Middleton",
-        "state": "WI",
-        "postal": "53717",
-        "preferred": true
-      }
-    ],
-    "creditCards": [
-      {
-        "id": 1,
-        "company": "Visa",
-        "number": "4111111111111234",
-        "cvv": "111",
-        "expirationDate": "2025-06-30T11:59:59Z",
-        "preferred": true,
-        "zip": "53717"
-      }
-    ]
-  },
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Josh",
+      "lastName": "Thomas",
+      "email": "josh@ionic.io",
+      "image": "jt-avatar.png",
+      "addresses": [
+        {
+          "id": 1,
+          "street": "1234 Shady Lane",
+          "city": "Middleton",
+          "state": "WI",
+          "postal": "53717",
+          "preferred": true
+        }
+      ],
+      "creditCards": [
+        {
+          "id": 1,
+          "company": "Visa",
+          "number": "4111111111111234",
+          "cvv": "111",
+          "expirationDate": "2025-06-30T11:59:59Z",
+          "preferred": true,
+          "zip": "53717"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "firstName": "Josh",
+      "lastName": "Thomas",
+      "email": "josh@ionic.io",
+      "image": "jt-avatar.png",
+      "addresses": [
+        {
+          "id": 1,
+          "street": "1234 Shady Lane",
+          "city": "Middleton",
+          "state": "WI",
+          "postal": "53717",
+          "preferred": true
+        }
+      ],
+      "creditCards": [
+        {
+          "id": 1,
+          "company": "Visa",
+          "number": "4111111111111234",
+          "cvv": "111",
+          "expirationDate": "2025-06-30T11:59:59Z",
+          "preferred": true,
+          "zip": "53717"
+        }
+      ]
+    }
+  ],
   "shoppingCart": [
     {
+      "userId": 1,
       "id": 1,
       "subtotal": 1000,
       "tax": 50,
@@ -182,16 +213,7 @@
           "image": "capacitor-hat.png",
           "category": "MustHaves",
           "price": 32,
-          "quantity": 2
-        },
-        {
-          "id": 2,
-          "title": "Ionic Portals Tote",
-          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          "image": "portals-tote.png",
-          "category": "MustHaves",
-          "price": 24,
-          "quantity": 1
+          "quantity": 8
         },
         {
           "id": 3,
@@ -308,7 +330,7 @@
           "image": "ionitron-shirt.png",
           "category": "Recommended",
           "price": 29,
-          "quantity": 1
+          "quantity": 2
         }
       ]
     }

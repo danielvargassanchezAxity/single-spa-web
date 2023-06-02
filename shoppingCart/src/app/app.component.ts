@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { assetUrl } from 'src/single-spa/asset-url';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'shoppingCart';
+  IMAGETEST = assetUrl("img/actor.jpeg");
   constructor() {}
   
 }

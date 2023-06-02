@@ -1,42 +1,4 @@
-$fontPrimary: "Nunito", sans-serif;
-/* You can add global styles to this file, and also import other style files */
-/* You can add global styles to this file, and also import other style files */
-@import "assets/themes/colors-theme.scss";
-@import "./assets/styles/bootstrap-grid.min.css";
-@mixin font-family-primary {
-  font-family: $fontPrimary;
-}
-
-html,
-body {
-  height: 100%;
-  margin: 0;
-  font-display: swap;
-  color: $grey-low;
-  background-color: red;
-  @include font-family-primary();
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-span,
-li {
-  @include font-family-primary();
-}
-.font-navistar-bold {
-  @include font-family-primary();
-  font-weight: 700 !important;
-}
-
-.font-navistar-medium {
-  @include font-family-primary();
-}
-.bg-white {
-  background-color: $white;
-}
-.bg-grey {
-  background-color: $grey-low;
+.test {
+  background-color: red !important;
+  color: white !important;
 }
